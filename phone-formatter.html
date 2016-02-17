@@ -43,13 +43,14 @@ Example:
        * A string used to determine how the user wants to format a phone number. If no format 
        * is specified, the result will be a phone number formatted with dashes. 
        * Options supported:
-       * - default (none specified) - results in 012-345-6789
+       * - default - results in 012-345-6789
        * - "parentheses" - results in (012) 345-6789
        * - "spaces" - results in 012 345 6789
        * - "periods" - results in 012.345.6789
        */
       format: {
-        type: String
+        type: String, 
+        value: 'dashes'
       },
 
       /**
