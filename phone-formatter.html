@@ -36,7 +36,7 @@ Example:
        * the 10-digit phone number to format
        */
       numberInput: {
-        type: Number
+        type: String
       },
 
       /**
@@ -84,7 +84,7 @@ Example:
           break;
       }
 
-      return numberInput.toString().replace(/(\d{3})(\d{3})(\d+)/, replacementString);
+      return numberInput.replace(/(\d{3})(\d{3})(\d+)/, replacementString);
     }
 
   });
