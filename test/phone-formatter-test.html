@@ -30,8 +30,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       suite('<phone-formatter>', function() {
 
         test('number input equals expected value', function() {
-          expect(phoneElem.numberInput).to.be.a('number');
-          expect(phoneElem.numberInput).to.be.equal(0123456789);
+          expect(phoneElem.numberInput).to.be.a('string');
+          expect(phoneElem.numberInput).to.be.equal('0123456789');
         });
 
       });
