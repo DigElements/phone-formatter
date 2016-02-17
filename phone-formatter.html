@@ -1,0 +1,91 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+Polymer element used to add formatting to 10-digit phone numbers.
+
+
+Example:
+
+    <phone-formatter number-input="0123456789"></phone-formatter>
+
+@element phone-formatter
+@demo demo/index.html
+-->
+<dom-module id="phone-formatter">
+
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <span>{{numberOutput}}</span>
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'phone-formatter',
+
+    properties: {
+
+      /**
+       * the 10-digit phone number to format
+       */
+      numberInput: {
+        type: Number
+      },
+
+      /**
+       * A string used to determine how the user wants to format a phone number. If no format 
+       * is specified, the result will be a phone number formatted with dashes. 
+       * Options supported:
+       * - default (none specified) - results in 012-345-6789
+       * - "parentheses" - results in (012) 345-6789
+       * - "spaces" - results in 012 345 6789
+       * - "periods" - results in 012.345.6789
+       */
+      format: {
+        type: String
+      },
+
+      /**
+       * Computed value of phone number input with formatting applied
+       */
+      numberOutput: {
+        type: String,
+        computed: 'computeNumberOutput(numberInput, format)'
+      }
+
+    },
+
+    /**
+     * Uses the format given to return the numberInput formatted as a string
+     */
+    computeNumberOutput: function(numberInput, format) {
+      var replacementString;
+
+      switch (format) {
+        case 'parentheses': 
+          replacementString = '($1) $2-$3';
+          break;
+        case 'spaces': 
+          replacementString = '$1 $2 $3';
+          break;
+        case 'periods': 
+          replacementString = '$1.$2.$3';
+          break;
+        default: 
+          replacementString = '$1-$2-$3';
+          break;
+      }
+
+      return numberInput.toString().replace(/(\d{3})(\d{3})(\d+)/, replacementString);
+    }
+
+  });
+
+</script>

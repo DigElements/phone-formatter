@@ -1,2 +1,2 @@
 # phone-formatter
-Polymer element used to add formatting to phone numbers.
+Polymer element used to add formatting to 10-digit phone numbers.
