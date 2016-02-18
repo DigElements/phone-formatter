@@ -22,20 +22,65 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <body>
 
     <!-- You can use the document as a place to set up your fixtures. -->
-    <phone-formatter number-input="0123456789"></phone-formatter>
+    <test-fixture id="phone-formatter-fixture">
+      <template>
+        <phone-formatter number-input="0123456789"></phone-formatter>
+      </template>
+    </test-fixture>
 
     <script>
-      var phoneElem = document.querySelector('phone-formatter');
+      var phoneElem;
 
-      suite('<phone-formatter>', function() {
+      suite('<phone-formatter> default tests', function() {
+        setup(function() {
+          phoneElem = fixture('phone-formatter-fixture');
+        });
 
         test('number input equals expected value', function() {
           expect(phoneElem.numberInput).to.be.a('string');
           expect(phoneElem.numberInput).to.be.equal('0123456789');
         });
 
+        test('format is set to default value', function() {
+          expect(phoneElem.format).to.be.a('string');
+          expect(phoneElem.format).to.be.equal('dashes');
+        });
+
+        test('number is reformatted with dashes', function() {
+          expect(phoneElem.numberOutput).to.be.a('string');
+          expect(phoneElem.numberOutput).to.be.equal('012-345-6789');
+        });
+      });
+
+      suite('<phone-formatter> tests when format is changed from default', function() {
+        setup(function() {
+          phoneElem = fixture('phone-formatter-fixture');
+        });
+
+        test('number is reformatted with parentheses', function() {
+          phoneElem.format = 'parentheses';
+          expect(phoneElem.numberOutput).to.be.a('string');
+          expect(phoneElem.numberOutput).to.be.equal('(012) 345-6789');
+        });
+
+        test('number is reformatted with spaces', function() {
+          phoneElem.format = 'spaces';
+          expect(phoneElem.numberOutput).to.be.a('string');
+          expect(phoneElem.numberOutput).to.be.equal('012 345 6789');
+        });
+
+        test('number is reformatted with periods', function() {
+          phoneElem.format = 'periods';
+          expect(phoneElem.numberOutput).to.be.a('string');
+          expect(phoneElem.numberOutput).to.be.equal('012.345.6789');
+        });
+
+        test('number is reformatted with dashes if unrecognized value is passed in for format', function() {
+          phoneElem.format = 'invalidoption';
+          expect(phoneElem.numberOutput).to.be.a('string');
+          expect(phoneElem.numberOutput).to.be.equal('012-345-6789');
+        });
       });
     </script>
-
   </body>
 </html>
