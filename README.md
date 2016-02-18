@@ -6,6 +6,7 @@ Example:
 ```html
 
     <phone-formatter number-input="0123456789" format="parentheses"></phone-formatter>
+```
 
 Options: 
 The following format options are supported:
