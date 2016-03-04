@@ -14,3 +14,29 @@ The following format options are supported:
 - "parentheses" - results in (012) 345-6789
 - "spaces" - results in 012 345 6789
 - "periods" - results in 012.345.6789
+
+## Install
+
+* bower install --save DigElements/phone-formatter
+* add a line to import the html file like this:
+
+`<link rel="import" href="../bower_components/phone-formatter/phone-formatter.html">`
+
+## Testing
+
+### web-component-tester
+
+The tests are compatible with [web-component-tester](https://github.com/Polymer/web-component-tester).
+Install it via:
+
+    npm install -g web-component-tester
+
+Then, you can run your tests on _all_ of your local browsers via:
+
+    wct
+
+#### WCT Tips
+
+`wct -l chrome` will only run tests in chrome.
+
+`wct -p` will keep the browsers alive after test runs (refresh to re-run).
