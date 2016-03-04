@@ -67,6 +67,10 @@ Example:
      * Uses the format given to return the numberInput formatted as a string
      */
     computeNumberOutput: function(numberInput, format) {
+      if(!numberInput) {
+        return;
+      }
+
       var replacementString;
 
       switch (format) {
