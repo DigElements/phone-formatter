@@ -5,7 +5,7 @@ Polymer element used to add formatting to 10-digit phone numbers.
 Example:
 ```html
 
-    <phone-formatter number-input="0123456789" format="parentheses"></phone-formatter>
+    <phone-formatter input="0123456789" format="parentheses"></phone-formatter>
 ```
 
 Options: 

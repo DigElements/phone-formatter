@@ -6,22 +6,15 @@ Polymer element used to add formatting to 10-digit phone numbers.
 
 Example:
 
-    <phone-formatter number-input="0123456789" format="parentheses"></phone-formatter>
+    <phone-formatter input="0123456789" format="parentheses"></phone-formatter>
 
 @element phone-formatter
 @demo demo/index.html
 -->
 <dom-module id="phone-formatter">
-
   <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
     <span>{{numberOutput}}</span>
   </template>
-
 </dom-module>
 
 <script>
@@ -33,9 +26,10 @@ Example:
     properties: {
 
       /**
-       * the 10-digit phone number to format
+       * the 10-digit phone number to format. A string including a 10-digit phone number would also suffice,
+       * and anything not matching that pattern will be ignored. 
        */
-      numberInput: {
+      input: {
         type: String
       },
 
@@ -56,39 +50,38 @@ Example:
       /**
        * Computed value of phone number input with formatting applied
        */
-      numberOutput: {
+      output: {
         type: String,
-        computed: 'computeNumberOutput(numberInput, format)'
+        computed: 'computeOutput(input, format)'
       }
 
     },
 
     /**
-     * Uses the format given to return the numberInput formatted as a string
+     * Uses the format given to return the input formatted as a string
      */
-    computeNumberOutput: function(numberInput, format) {
-      if(!numberInput) {
+    computeOutput: function(input, format) {
+      if(!input) {
         return;
       }
+        var replacementString;
 
-      var replacementString;
+        switch (format) {
+          case 'parentheses': 
+            replacementString = '($1) $2-$3';
+            break;
+          case 'spaces': 
+            replacementString = '$1 $2 $3';
+            break;
+          case 'periods': 
+            replacementString = '$1.$2.$3';
+            break;
+          default: 
+            replacementString = '$1-$2-$3';
+            break;
+        }
 
-      switch (format) {
-        case 'parentheses': 
-          replacementString = '($1) $2-$3';
-          break;
-        case 'spaces': 
-          replacementString = '$1 $2 $3';
-          break;
-        case 'periods': 
-          replacementString = '$1.$2.$3';
-          break;
-        default: 
-          replacementString = '$1-$2-$3';
-          break;
-      }
-
-      return numberInput.replace(/(\d{3})(\d{3})(\d+)/, replacementString);
+        return input.replace(/(\d{3})(\d{3})(\d+)/, replacementString);
     }
 
   });

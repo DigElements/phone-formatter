@@ -24,21 +24,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- You can use the document as a place to set up your fixtures. -->
     <test-fixture id="phone-formatter-fixture">
       <template>
-        <phone-formatter number-input="0123456789"></phone-formatter>
+        <phone-formatter input="0123456789"></phone-formatter>
       </template>
     </test-fixture>
 
     <script>
       var phoneElem;
 
-      suite('<phone-formatter> default tests', function() {
+      suite('<phone-formatter> default tests with 10-digit phone number as input', function() {
         setup(function() {
           phoneElem = fixture('phone-formatter-fixture');
         });
 
         test('number input equals expected value', function() {
-          expect(phoneElem.numberInput).to.be.a('string');
-          expect(phoneElem.numberInput).to.be.equal('0123456789');
+          expect(phoneElem.input).to.be.a('string');
+          expect(phoneElem.input).to.be.equal('0123456789');
         });
 
         test('format is set to default value', function() {
@@ -47,8 +47,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
 
         test('number is reformatted with dashes', function() {
-          expect(phoneElem.numberOutput).to.be.a('string');
-          expect(phoneElem.numberOutput).to.be.equal('012-345-6789');
+          expect(phoneElem.output).to.be.a('string');
+          expect(phoneElem.output).to.be.equal('012-345-6789');
         });
       });
 
@@ -59,28 +59,92 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         test('number is reformatted with parentheses', function() {
           phoneElem.format = 'parentheses';
-          expect(phoneElem.numberOutput).to.be.a('string');
-          expect(phoneElem.numberOutput).to.be.equal('(012) 345-6789');
+          expect(phoneElem.output).to.be.a('string');
+          expect(phoneElem.output).to.be.equal('(012) 345-6789');
         });
 
         test('number is reformatted with spaces', function() {
           phoneElem.format = 'spaces';
-          expect(phoneElem.numberOutput).to.be.a('string');
-          expect(phoneElem.numberOutput).to.be.equal('012 345 6789');
+          expect(phoneElem.output).to.be.a('string');
+          expect(phoneElem.output).to.be.equal('012 345 6789');
         });
 
         test('number is reformatted with periods', function() {
           phoneElem.format = 'periods';
-          expect(phoneElem.numberOutput).to.be.a('string');
-          expect(phoneElem.numberOutput).to.be.equal('012.345.6789');
+          expect(phoneElem.output).to.be.a('string');
+          expect(phoneElem.output).to.be.equal('012.345.6789');
         });
 
         test('number is reformatted with dashes if unrecognized value is passed in for format', function() {
           phoneElem.format = 'invalidoption';
-          expect(phoneElem.numberOutput).to.be.a('string');
-          expect(phoneElem.numberOutput).to.be.equal('012-345-6789');
+          expect(phoneElem.output).to.be.a('string');
+          expect(phoneElem.output).to.be.equal('012-345-6789');
         });
       });
+
+      suite('<phone-formatter> tests when input string includes a 10-digit phone number', function() {
+        setup(function() {
+          phoneElem = fixture('phone-formatter-fixture');
+          phoneElem.input = 'String: 0123456789';
+        });
+
+        test('number is reformatted with parentheses', function() {
+          phoneElem.format = 'parentheses';
+          expect(phoneElem.output).to.be.a('string');
+          expect(phoneElem.output).to.be.equal('String: (012) 345-6789');
+        });
+
+        test('number is reformatted with spaces', function() {
+          phoneElem.format = 'spaces';
+          expect(phoneElem.output).to.be.a('string');
+          expect(phoneElem.output).to.be.equal('String: 012 345 6789');
+        });
+
+        test('number is reformatted with periods', function() {
+          phoneElem.format = 'periods';
+          expect(phoneElem.output).to.be.a('string');
+          expect(phoneElem.output).to.be.equal('String: 012.345.6789');
+        });
+
+        test('number is reformatted with dashes if unrecognized value is passed in for format', function() {
+          phoneElem.format = 'invalidoption';
+          expect(phoneElem.output).to.be.a('string');
+          expect(phoneElem.output).to.be.equal('String: 012-345-6789');
+        });
+      });
+
+      suite('<phone-formatter> tests when input string does not include a phone number', function() {
+        setup(function() {
+          phoneElem = fixture('phone-formatter-fixture');
+          phoneElem.input = 'letters only';
+        });
+
+        test('input is not reformatted with parentheses', function() {
+          phoneElem.format = 'parentheses';
+          expect(phoneElem.output).to.be.a('string');
+          expect(phoneElem.output).to.be.equal('letters only');
+        });
+
+        test('input is not reformatted with spaces', function() {
+          phoneElem.format = 'spaces';
+          expect(phoneElem.output).to.be.a('string');
+          expect(phoneElem.output).to.be.equal('letters only');
+        });
+
+        test('input is not reformatted with periods', function() {
+          phoneElem.format = 'periods';
+          expect(phoneElem.output).to.be.a('string');
+          expect(phoneElem.output).to.be.equal('letters only');
+        });
+
+        test('input is not reformatted with dashes if unrecognized value is passed in for format', function() {
+          phoneElem.format = 'invalidoption';
+          expect(phoneElem.output).to.be.a('string');
+          expect(phoneElem.output).to.be.equal('letters only');
+        });
+      });
+
+
     </script>
   </body>
 </html>
