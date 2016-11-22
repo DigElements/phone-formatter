@@ -1,8 +1,8 @@
 {
   "name": "phone-formatter",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "authors": [
-    "Rachel Artiss"
+    "Next Century Corporation"
   ],
   "description": "Polymer element used to add formatting to 10-digit phone numbers.",
   "keywords": [

@@ -9,11 +9,39 @@
   </head>
   <body unresolved>
 
-    <p>An example of <code>&lt;phone-formatter&gt;</code>:</p>
+    <p>Examples of <code>&lt;phone-formatter&gt;</code>:</p>
 
     <p>0123456789 becomes: </p>
 
-    <phone-formatter input="0123456789"></phone-formatter>
+    <p>===== DEMO 1 =====</p>
+    <p>Format: default (dashes)</p>
 
+    <phone-formatter
+      input="0123456789">
+    </phone-formatter>
+
+    <p>===== DEMO 2 =====</p>
+    <p>Format: parentheses</p>
+
+    <phone-formatter
+      input="0123456789"
+      format="parentheses">
+    </phone-formatter>
+
+    <p>===== DEMO 3 =====</p>
+    <p>Format: spaces</p>
+
+    <phone-formatter
+      input="0123456789"
+      format="spaces">
+    </phone-formatter>
+
+    <p>===== DEMO 4 =====</p>
+    <p>Format: periods</p>
+
+    <phone-formatter
+      input="0123456789"
+      format="periods">
+    </phone-formatter>
   </body>
 </html>
