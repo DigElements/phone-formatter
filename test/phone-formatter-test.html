@@ -50,6 +50,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           expect(phoneElem.output).to.be.a('string');
           expect(phoneElem.output).to.be.equal('012-345-6789');
         });
+
+        test('check that correct number is displayed', function() {
+          expect(Polymer.dom(phoneElem.root).children.length).to.equal(1);
+          expect(phoneElem.$$('span')).to.exist;
+          expect(phoneElem.$$('span').innerText).to.equal(phoneElem.output);
+        });
       });
 
       suite('<phone-formatter> tests when format is changed from default', function() {
@@ -61,24 +67,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           phoneElem.format = 'parentheses';
           expect(phoneElem.output).to.be.a('string');
           expect(phoneElem.output).to.be.equal('(012) 345-6789');
+          expect(phoneElem.$$('span').innerText).to.equal('(012) 345-6789');
         });
 
         test('number is reformatted with spaces', function() {
           phoneElem.format = 'spaces';
           expect(phoneElem.output).to.be.a('string');
           expect(phoneElem.output).to.be.equal('012 345 6789');
+          expect(phoneElem.$$('span').innerText).to.equal('012 345 6789');
         });
 
         test('number is reformatted with periods', function() {
           phoneElem.format = 'periods';
           expect(phoneElem.output).to.be.a('string');
           expect(phoneElem.output).to.be.equal('012.345.6789');
+          expect(phoneElem.$$('span').innerText).to.equal('012.345.6789');
         });
 
         test('number is reformatted with dashes if unrecognized value is passed in for format', function() {
           phoneElem.format = 'invalidoption';
           expect(phoneElem.output).to.be.a('string');
           expect(phoneElem.output).to.be.equal('012-345-6789');
+          expect(phoneElem.$$('span').innerText).to.equal('012-345-6789');
         });
       });
 
