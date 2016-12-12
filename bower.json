@@ -1,10 +1,10 @@
 {
   "name": "phone-formatter",
-  "version": "0.0.7",
+  "version": "1.0.0",
   "authors": [
     "Next Century Corporation"
   ],
-  "description": "Polymer element used to add formatting to 10-digit phone numbers.",
+  "description": "A Polymer Element used to add formatting to 10-digit phone numbers.",
   "keywords": [
     "web-component",
     "polymer"
@@ -17,10 +17,10 @@
     "/test/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.1.0"
+    "polymer": "Polymer/polymer#^1.7.0"
   },
   "devDependencies": {
-    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
-    "web-component-tester": "*"
+    "iron-component-page": "PolymerElements/iron-component-page#^1.1.7",
+    "web-component-tester": "^5.0.0"
   }
 }

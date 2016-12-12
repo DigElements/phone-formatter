@@ -1,16 +1,16 @@
 <link rel="import" href="../polymer/polymer.html">
 
 <!--
-Polymer element used to add formatting to 10-digit phone numbers.
+A Polymer Element used to add formatting to 10-digit phone numbers.
 
+### Example
+```html
+<phone-formatter input="0123456789" format="parentheses"></phone-formatter>
+```
 
-Example:
-
-    <phone-formatter input="0123456789" format="parentheses"></phone-formatter>
-
-@element phone-formatter
 @demo demo/index.html
 -->
+
 <dom-module id="phone-formatter">
   <template>
     <span>{{output}}</span>
@@ -18,22 +18,25 @@ Example:
 </dom-module>
 
 <script>
-
   Polymer({
-
     is: 'phone-formatter',
 
     properties: {
-
       /**
-       * the 10-digit phone number to format. A string including a 10-digit phone number would also suffice,
+       * (Required)
+       *
+       * The 10-digit phone number to format. A string including a 10-digit phone number would also suffice,
        * and anything not matching that pattern will be ignored. 
+       *
+       * @type {String}
        */
       input: {
         type: String
       },
 
       /**
+       * (Optional)
+       *
        * A string used to determine how the user wants to format a phone number. If no format 
        * is specified, the result will be a phone number formatted with dashes. 
        * Options supported:
@@ -41,6 +44,9 @@ Example:
        * - "parentheses" - results in (012) 345-6789
        * - "spaces" - results in 012 345 6789
        * - "periods" - results in 012.345.6789
+       *
+       * @type {String}
+       * @default 'dashes'
        */
       format: {
         type: String, 
@@ -48,22 +54,31 @@ Example:
       },
 
       /**
+       * (Output)
+       *
        * Computed value of phone number input with formatting applied
+       *
+       * @type {String}
        */
       output: {
         type: String,
-        computed: 'computeOutput(input, format)'
+        computed: '_computeOutput(input, format)'
       }
-
     },
 
     /**
      * Uses the format given to return the input formatted as a string
+     *
+     * @param {String} input
+     * @param {String} format
+     * @return {String}
+     * @private
      */
-    computeOutput: function(input, format) {
-      if(!input) {
-        return;
-      }
+    _computeOutput: function(input, format) {
+        if(!input) {
+          return;
+        }
+
         var replacementString;
 
         switch (format) {
@@ -83,7 +98,5 @@ Example:
 
         return input.replace(/(\d{3})(\d{3})(\d{4})/, replacementString);
     }
-
   });
-
 </script>

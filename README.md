@@ -1,42 +1,38 @@
 # phone-formatter
-Polymer element used to add formatting to 10-digit phone numbers.
 
+A Polymer Element used to add formatting to 10-digit phone numbers.
 
-Example:
+### Example
 ```html
-
-    <phone-formatter input="0123456789" format="parentheses"></phone-formatter>
+<phone-formatter input="0123456789" format="parentheses"></phone-formatter>
 ```
 
-Options: 
+### Options
+
 The following format options are supported:
 - default (no user input given for 'format') - results in a number formatted with dashes: 012-345-6789
 - "parentheses" - results in (012) 345-6789
 - "spaces" - results in 012 345 6789
 - "periods" - results in 012.345.6789
 
-## Install
+### Dependencies
 
-* bower install --save DigElements/phone-formatter
-* add a line to import the html file like this:
+Dependencies are installed using [Bower](http://bower.io/):
 
-`<link rel="import" href="../bower_components/phone-formatter/phone-formatter.html">`
+    npm install -g bower
+    bower install
 
-## Testing
+### Testing
 
-### web-component-tester
-
-The tests are compatible with [web-component-tester](https://github.com/Polymer/web-component-tester).
-Install it via:
+Tests are run using [web-component-tester](https://github.com/Polymer/web-component-tester):
 
     npm install -g web-component-tester
-
-Then, you can run your tests on _all_ of your local browsers via:
-
     wct
 
-#### WCT Tips
+### Demonstration & Documentation
 
-`wct -l chrome` will only run tests in chrome.
+Demonstration and documentation are viewed using [polyserve](https://github.com/PolymerLabs/polyserve):
 
-`wct -p` will keep the browsers alive after test runs (refresh to re-run).
+    npm install -g polyserve
+    polyserve
+
