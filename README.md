@@ -1,6 +1,6 @@
 # phone-formatter
 
-A Polymer Element used to add formatting to 10-digit phone numbers.
+A Polymer Element used to add formatting to telephone numbers.
 
 ### Example
 ```html
@@ -9,11 +9,15 @@ A Polymer Element used to add formatting to 10-digit phone numbers.
 
 ### Options
 
-The following format options are supported:
-- default (no user input given for 'format') - results in a number formatted with dashes: 012-345-6789
-- "parentheses" - results in (012) 345-6789
-- "spaces" - results in 012 345 6789
-- "periods" - results in 012.345.6789
+The format property supports the following options:
+
+| Option | Examples |
+|--------|----------|
+| "dashes" | 012-345-6789, 111-222-333-4444 |
+| "parentheses" | (012) 345-6789, +111 (222) 333-4444 |
+| "periods" | 012.345.6789, 111.222.333.4444 |
+| "spaces" | 012 345 6789, 111 222 333 4444 |
+| an empty or unsupported option | 0123456789, +1112223334444 |
 
 ### Dependencies
 

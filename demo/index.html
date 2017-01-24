@@ -23,9 +23,6 @@ limitations under the License.
     <link rel="import" href="../phone-formatter.html">
   </head>
   <body unresolved>
-
-    <p>Examples of <code>&lt;phone-formatter&gt;</code>:</p>
-
     <p>0123456789 becomes: </p>
 
     <p>===== DEMO 1 =====</p>
@@ -44,6 +41,14 @@ limitations under the License.
     </phone-formatter>
 
     <p>===== DEMO 3 =====</p>
+    <p>Format: periods</p>
+
+    <phone-formatter
+      input="0123456789"
+      format="periods">
+    </phone-formatter>
+
+    <p>===== DEMO 4 =====</p>
     <p>Format: spaces</p>
 
     <phone-formatter
@@ -51,12 +56,39 @@ limitations under the License.
       format="spaces">
     </phone-formatter>
 
-    <p>===== DEMO 4 =====</p>
+    <p>==================</p>
+
+    <p>1112223334444 becomes: </p>
+
+    <p>===== DEMO 5 =====</p>
+    <p>Format: default (dashes)</p>
+
+    <phone-formatter
+      input="1112223334444">
+    </phone-formatter>
+
+    <p>===== DEMO 6 =====</p>
+    <p>Format: parentheses</p>
+
+    <phone-formatter
+      input="1112223334444"
+      format="parentheses">
+    </phone-formatter>
+
+    <p>===== DEMO 7 =====</p>
     <p>Format: periods</p>
 
     <phone-formatter
-      input="0123456789"
+      input="1112223334444"
       format="periods">
+    </phone-formatter>
+
+    <p>===== DEMO 8 =====</p>
+    <p>Format: spaces</p>
+
+    <phone-formatter
+      input="1112223334444"
+      format="spaces">
     </phone-formatter>
   </body>
 </html>

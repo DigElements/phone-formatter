@@ -17,7 +17,7 @@ limitations under the License.
 <link rel="import" href="../polymer/polymer.html">
 
 <!--
-A Polymer Element used to add formatting to 10-digit phone numbers.
+A Polymer Element used to add formatting to telephone numbers.
 
 ### Example
 ```html
@@ -41,7 +41,7 @@ A Polymer Element used to add formatting to 10-digit phone numbers.
       /**
        * (Required)
        *
-       * The 10-digit phone number to format. A string including a 10-digit phone number would also suffice,
+       * The telephone number to format. A string including a telephone number would also suffice,
        * and anything not matching that pattern will be ignored. 
        *
        * @type {String}
@@ -53,13 +53,10 @@ A Polymer Element used to add formatting to 10-digit phone numbers.
       /**
        * (Optional)
        *
-       * A string used to determine how the user wants to format a phone number. If no format 
-       * is specified, the result will be a phone number formatted with dashes. 
-       * Options supported:
-       * - default - results in 012-345-6789
-       * - "parentheses" - results in (012) 345-6789
-       * - "spaces" - results in 012 345 6789
-       * - "periods" - results in 012.345.6789
+       * A string used to determine how the user wants to format a phone number. If no format is
+       * specified, the result will be a phone number formatted with no punctuation or spaces.
+       * Options:
+       * dashes, parentheses, periods, spaces
        *
        * @type {String}
        * @default 'dashes'
@@ -91,28 +88,27 @@ A Polymer Element used to add formatting to 10-digit phone numbers.
      * @private
      */
     _computeOutput: function(input, format) {
-        if(!input) {
-          return;
+      if(!input) {
+        return;
+      }
+
+      return input.replace(/(\d{0,4})(\d{3})(\d{3})(\d{4})/, function(match, p1, p2, p3, p4) {
+        if(p2 && p3 && p4) {
+          if(format === 'dashes') {
+            return (p1 ? p1 + '-' : '') + p2 + '-' + p3 + '-' + p4;
+          }
+          if(format === 'parentheses') {
+            return (p1 ? '+' + p1 + ' ' : '') + '(' + p2 + ') ' + p3 + '-' + p4;
+          }
+          if(format === 'periods') {
+            return (p1 ? p1 + '.' : '') + p2 + '.' + p3 + '.' + p4;
+          }
+          if(format === 'spaces') {
+            return (p1 ? p1 + ' ' : '') + p2 + ' ' + p3 + ' ' + p4;
+          }
         }
-
-        var replacementString;
-
-        switch (format) {
-          case 'parentheses': 
-            replacementString = '($1) $2-$3';
-            break;
-          case 'spaces': 
-            replacementString = '$1 $2 $3';
-            break;
-          case 'periods': 
-            replacementString = '$1.$2.$3';
-            break;
-          default: 
-            replacementString = '$1-$2-$3';
-            break;
-        }
-
-        return input.replace(/(\d{3})(\d{3})(\d{4})/, replacementString);
+        return p1 + p2 + p3 + p4;
+      });
     }
   });
 </script>
